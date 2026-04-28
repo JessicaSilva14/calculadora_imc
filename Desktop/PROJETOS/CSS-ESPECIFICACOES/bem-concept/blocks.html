@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM - Blocos (Blocks)</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Títulos */
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        h2 { color: #666; margin: 40px 0 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        h3 { color: #444; margin: 30px 0 15px 0; }
+
+        /* Código */
+        .code-example { background: #f8f8f8; border-left: 4px solid #007acc; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; }
+
+        /* Cards explicativos */
+        .concept-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .concept-card h4 { color: #007acc; margin-bottom: 10px; }
+
+        /* Exemplos visuais */
+        .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧱 BEM - Blocos (Blocks)</h1>
+
+        <div class="concept-card">
+            <h4>Definição de Bloco</h4>
+            <p><strong>Bloco</strong> é um componente independente e reutilizável que pode existir por conta própria. É a unidade fundamental da arquitetura BEM.</p>
+        </div>
+
+        <h2>Características dos Blocos</h2>
+
+        <div class="concept-card">
+            <h4>✅ Independente</h4>
+            <p>Um bloco não depende de outros blocos ou elementos externos para funcionar.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Reutilizável</h4>
+            <p>Blocos podem ser usados em qualquer lugar da aplicação sem modificações.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Autossuficiente</h4>
+            <p>Contém todos os estilos necessários para sua apresentação básica.</p>
+        </div>
+
+        <h2>Exemplos de Blocos</h2>
+
+        <h3>1. Bloco de Botão</h3>
+        <div class="code-example">
+/* Bloco: botão */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+        </div>
+
+        <div class="demo-section">
+            <h4>Exemplo Visual:</h4>
+            <button class="button">Botão Básico</button>
+        </div>
+
+        <h3>2. Bloco de Card</h3>
+        <div class="code-example">
+/* Bloco: card */
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px 0;
+}
+        </div>
+
+        <div class="demo-section">
+            <h4>Exemplo Visual:</h4>
+            <div class="card">
+                <h3>Título do Card</h3>
+                <p>Este é um exemplo de bloco card. Ele é independente e pode ser usado em qualquer lugar.</p>
+            </div>
+        </div>
+
+        <h3>3. Bloco de Formulário</h3>
+        <div class="code-example">
+/* Bloco: form */
+.form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+        </div>
+
+        <div class="demo-section">
+            <h4>Exemplo Visual:</h4>
+            <div class="form">
+                <h3>Formulário de Contato</h3>
+                <p>Este bloco form pode conter inputs, labels, botões, etc.</p>
+            </div>
+        </div>
+
+        <h2>Convenções de Nomenclatura</h2>
+
+        <div class="concept-card">
+            <h4>📝 Regras para Nomes de Blocos</h4>
+            <ul>
+                <li>Use apenas letras minúsculas</li>
+                <li>Separe palavras com hífen: <code>user-profile</code></li>
+                <li>Seja descritivo e específico</li>
+                <li>Evite nomes genéricos demais: prefira <code>search-form</code> ao invés de <code>form</code></li>
+            </ul>
+        </div>
+
+        <h2>Exemplos de Bons Nomes de Blocos</h2>
+
+        <div class="code-example">
+/* Bons exemplos */
+.user-profile {}      /* Perfil do usuário */
+.search-form {}       /* Formulário de busca */
+.product-card {}      /* Card de produto */
+.navigation-menu {}   /* Menu de navegação */
+.social-share {}      /* Compartilhamento social */
+
+/* Evite nomes genéricos */
+.box {}               /* ❌ Muito genérico */
+.container {}         /* ❌ Muito genérico */
+.item {}              /* ❌ Muito genérico */
+        </div>
+
+        <h2>Próximos Passos</h2>
+
+        <div class="concept-card">
+            <p>Agora que você entende blocos, vamos aprender sobre <strong>elementos</strong> - as partes que compõem os blocos.</p>
+            <p><a href="elements.html">➡️ Ir para Elementos</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

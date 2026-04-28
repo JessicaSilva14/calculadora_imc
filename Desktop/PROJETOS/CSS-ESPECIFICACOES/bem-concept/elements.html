@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM - Elementos (Elements)</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Títulos */
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        h2 { color: #666; margin: 40px 0 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        h3 { color: #444; margin: 30px 0 15px 0; }
+
+        /* Código */
+        .code-example { background: #f8f8f8; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; }
+
+        /* Cards explicativos */
+        .concept-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .concept-card h4 { color: #28a745; margin-bottom: 10px; }
+
+        /* Exemplos visuais */
+        .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #ddd; }
+
+        /* Estilos BEM para demonstração */
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            max-width: 400px;
+        }
+
+        .product-card__image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .product-card__title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-card__price {
+            font-size: 1.2em;
+            color: #007acc;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-card__description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .product-card__button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .product-card__button:hover {
+            background: #005999;
+        }
+
+        /* Destaque para elementos */
+        .highlight { background: #fff3cd; padding: 2px 4px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 BEM - Elementos (Elements)</h1>
+
+        <div class="concept-card">
+            <h4>Definição de Elemento</h4>
+            <p><strong>Elemento</strong> é uma parte de um bloco que não tem significado independente. Elementos são sempre parte de um bloco e não podem existir fora dele.</p>
+        </div>
+
+        <h2>Características dos Elementos</h2>
+
+        <div class="concept-card">
+            <h4>🔗 Sempre Parte de um Bloco</h4>
+            <p>Elementos existem apenas dentro do contexto de seu bloco pai.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>📝 Sintaxe: bloco__elemento</h4>
+            <p>Elementos são nomeados usando <strong>dois underscores (__)</strong> após o nome do bloco.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>🎯 Semânticos ao Bloco</h4>
+            <p>Elementos descrevem sua função dentro do bloco específico.</p>
+        </div>
+
+        <h2>Exemplo Prático: Product Card</h2>
+
+        <div class="demo-section">
+            <h4>Card de Produto com Elementos BEM:</h4>
+            <div class="product-card">
+                <div class="product-card__image">
+                    📷 Imagem do Produto
+                </div>
+                <h3 class="product-card__title">Produto Exemplo</h3>
+                <div class="product-card__price">R$ 99,90</div>
+                <p class="product-card__description">
+                    Esta é a descrição do produto. Elementos são partes específicas do bloco.
+                </p>
+                <button class="product-card__button">Comprar Agora</button>
+            </div>
+        </div>
+
+        <h3>Código CSS dos Elementos:</h3>
+        <div class="code-example">
+/* Bloco */
+.product-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Elementos do bloco */
+.product-card<span class="highlight">__image</span> {
+    width: 100%;
+    height: 200px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.product-card<span class="highlight">__title</span> {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-card<span class="highlight">__price</span> {
+    font-size: 1.2em;
+    color: #007acc;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card<span class="highlight">__description</span> {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.product-card<span class="highlight">__button</span> {
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+        </div>
+
+        <h2>HTML Estruturado com BEM:</h2>
+        <div class="code-example">
+&lt;div class="product-card"&gt;
+    &lt;div class="product-card<span class="highlight">__image</span>"&gt;
+        📷 Imagem do Produto
+    &lt;/div&gt;
+    &lt;h3 class="product-card<span class="highlight">__title</span>"&gt;Produto Exemplo&lt;/h3&gt;
+    &lt;div class="product-card<span class="highlight">__price</span>"&gt;R$ 99,90&lt;/div&gt;
+    &lt;p class="product-card<span class="highlight">__description</span>"&gt;
+        Descrição do produto...
+    &lt;/p&gt;
+    &lt;button class="product-card<span class="highlight">__button</span>"&gt;Comprar Agora&lt;/button&gt;
+&lt;/div&gt;
+        </div>
+
+        <h2>Regras para Nomenclatura de Elementos</h2>
+
+        <div class="concept-card">
+            <h4>📝 Convenções</h4>
+            <ul>
+                <li>Use apenas letras minúsculas</li>
+                <li>Separe palavras com hífen: <code>product-card__buy-button</code></li>
+                <li>Seja específico sobre a função do elemento</li>
+                <li>Elementos podem ter sub-elementos: <code>menu__item__link</code></li>
+            </ul>
+        </div>
+
+        <h2>Exemplos de Estruturas BEM</h2>
+
+        <h3>Menu de Navegação</h3>
+        <div class="code-example">
+.menu {
+    background: #333;
+    padding: 10px;
+}
+
+.menu__list {
+    list-style: none;
+    display: flex;
+}
+
+.menu__item {
+    margin: 0 10px;
+}
+
+.menu__link {
+    color: white;
+    text-decoration: none;
+}
+        </div>
+
+        <h3>Formulário de Busca</h3>
+        <div class="code-example">
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-form__input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-form__button {
+    padding: 10px 20px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+        </div>
+
+        <h2>Elementos vs Blocos Independentes</h2>
+
+        <div class="concept-card">
+            <h4>❌ Errado: Usar elemento fora do bloco</h4>
+            <div class="code-example">
+/* Não faça isso */
+.product-card__title { ... }
+
+/* Usando o elemento fora do contexto */
+&lt;h1 class="product-card__title"&gt;Título da Página&lt;/h1&gt; &lt;!-- ❌ Errado --&gt;
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Correto: Criar bloco independente</h4>
+            <div class="code-example">
+/* Crie um bloco independente */
+.page-title { ... }
+
+/* Use no contexto correto */
+&lt;h1 class="page-title"&gt;Título da Página&lt;/h1&gt; &lt;!-- ✅ Correto --&gt;
+            </div>
+        </div>
+
+        <h2>Próximos Passos</h2>
+
+        <div class="concept-card">
+            <p>Agora que você entende elementos, vamos aprender sobre <strong>modificadores</strong> - como alterar aparência e comportamento de blocos e elementos.</p>
+            <p><a href="modifiers.html">➡️ Ir para Modificadores</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

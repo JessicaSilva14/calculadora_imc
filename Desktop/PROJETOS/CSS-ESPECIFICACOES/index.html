@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício boas práticas de CSS - SMACSS com BEM</title>
+    <!-- Stylesheet SASS + BEM - Arquivo principal compilado -->
+    <link rel="stylesheet" href="smacss/main.css">
+</head>
+<body class="theme-a">
+    <!-- Seletor de Temas - Aplicando BEM -->
+    <div class="theme-selector">
+        <button type="button" class="theme-selector__button theme-selector__button--theme-a theme-selector__button--active" onclick="setTheme('theme-a')" data-theme="theme-a">Tema A</button>
+        <button type="button" class="theme-selector__button theme-selector__button--theme-b" onclick="setTheme('theme-b')" data-theme="theme-b">Tema B</button>
+    </div>
+
+    <!--
+        ESTRUTURA SMACSS COM BEM
+
+        Layout (l-*): Classes de estrutura e grid
+        Module (produto): Componentes BEM com elementos (__) e modificadores (--)
+        Theme (theme-a, theme-b): Paletas de cores e customizações visuais
+    -->
+
+    <div class="l-container">
+        <header class="header-section">
+            <h1 class="header-section__title">Catálogo de Produtos</h1>
+            <p class="header-section__subtitle">Exemplo de CSS com Metodologia SMACSS + BEM</p>
+        </header>
+
+        <div class="l-grid">
+            <!-- Produto 1 - Estado normal -->
+            <article class="produto">
+                <img class="produto__imagem" src="https://via.placeholder.com/300x200/FF6B35/FFFFFF?text=Produto+1" alt="Produto 1">
+                <div class="produto__conteudo">
+                    <h4 class="produto__titulo">Produto 1</h4>
+                    <p class="produto__descricao">
+                        Descrição do primeiro produto com estilos base do componente.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Produto 2 - Estado destaque com badge -->
+            <article class="produto produto--destaque">
+                <img class="produto__imagem" src="https://via.placeholder.com/300x200/F7931E/FFFFFF?text=Produto+2" alt="Produto 2">
+                <div class="produto__conteudo">
+                    <h4 class="produto__titulo">Produto 2</h4>
+                    <p class="produto__descricao">
+                        Produto em destaque com modificador BEM e badge decorativo.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Produto 3 - Estado normal -->
+            <article class="produto">
+                <img class="produto__imagem" src="https://via.placeholder.com/300x200/004E89/FFFFFF?text=Produto+3" alt="Produto 3">
+                <div class="produto__conteudo">
+                    <h4 class="produto__titulo">Produto 3</h4>
+                    <p class="produto__descricao">
+                        Descrição do terceiro produto com estilos padrão do tema.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Seção de informação sobre o projeto - Aplicando BEM -->
+        <section class="info-section">
+            <h2 class="info-section__title">📁 Arquitetura SMACSS</h2>
+            <div class="info-section__content">
+                <p>
+                    <strong>BASE:</strong> Reset e estilos padrão<br>
+                    <strong>LAYOUT:</strong> Grid e containers responsivos<br>
+                    <strong>MODULE:</strong> Componentes BEM (produto, elementos, modificadores)<br>
+                    <strong>STATE:</strong> Estados (is-active, is-disabled)<br>
+                    <strong>THEME:</strong> Tema A (quente) e Tema B (elegante) com paletas personalizadas
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function setTheme(themeName) {
+            // Remove todas as classes de tema do body
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+
+            // Adiciona o novo tema
+            document.body.classList.add(themeName);
+
+            // Atualiza os botões do seletor usando classes BEM
+            const buttons = document.querySelectorAll('.theme-selector__button');
+
+            buttons.forEach(button => {
+                const buttonTheme = button.getAttribute('data-theme');
+
+                // Remove classe ativa de todos os botões
+                button.classList.remove('theme-selector__button--active');
+
+                // Adiciona classe ativa ao botão do tema selecionado
+                if (buttonTheme === themeName) {
+                    button.classList.add('theme-selector__button--active');
+                }
+            });
+        }
+
+        // Inicializar estado dos botões na carga da página
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentTheme = document.body.className.match(/theme-\w+/)?.[0] || 'theme-a';
+            setTheme(currentTheme);
+        });
+    </script>
+</body>
+</html>

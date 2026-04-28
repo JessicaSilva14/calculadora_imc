@@ -1,0 +1,39 @@
+/* ===================================
+    LAYOUT - Estrutura principal
+   =================================== */
+
+/* Container principal */
+.l-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Layout grid para produtos */
+.l-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Responsividade - Tablets */
+@media (max-width: 1024px) {
+    .l-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 640px) {
+    .l-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .l-container {
+        padding: 0 15px;
+    }
+}

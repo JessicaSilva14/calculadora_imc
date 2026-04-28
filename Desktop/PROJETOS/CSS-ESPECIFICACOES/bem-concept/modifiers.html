@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM - Modificadores (Modifiers)</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Títulos */
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        h2 { color: #666; margin: 40px 0 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        h3 { color: #444; margin: 30px 0 15px 0; }
+
+        /* Código */
+        .code-example { background: #f8f8f8; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; }
+
+        /* Cards explicativos */
+        .concept-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .concept-card h4 { color: #dc3545; margin-bottom: 10px; }
+
+        /* Exemplos visuais */
+        .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #ddd; }
+
+        /* Estilos BEM para demonstração */
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #005999;
+        }
+
+        /* Modificadores do botão */
+        .button--large {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        .button--small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .button--danger {
+            background-color: #dc3545;
+        }
+
+        .button--danger:hover {
+            background-color: #c82333;
+        }
+
+        .button--success {
+            background-color: #28a745;
+        }
+
+        .button--success:hover {
+            background-color: #218838;
+        }
+
+        .button--disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .button--disabled:hover {
+            background-color: #6c757d;
+        }
+
+        /* Card com modificadores */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+        }
+
+        .card--featured {
+            border-color: gold;
+            background: linear-gradient(135deg, #fffacd 0%, #fff 100%);
+        }
+
+        .card--highlighted {
+            border-color: #007acc;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .card__title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card__content {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Destaque para modificadores */
+        .highlight-mod { background: #f8d7da; padding: 2px 4px; border-radius: 2px; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 BEM - Modificadores (Modifiers)</h1>
+
+        <div class="concept-card">
+            <h4>Definição de Modificador</h4>
+            <p><strong>Modificador</strong> define o estado, aparência ou comportamento de um bloco ou elemento. Eles alteram a apresentação padrão sem criar novos componentes.</p>
+        </div>
+
+        <h2>Características dos Modificadores</h2>
+
+        <div class="concept-card">
+            <h4>🔄 Alteram Aparência/Comportamento</h4>
+            <p>Modificadores mudam cores, tamanhos, estados, etc., do bloco ou elemento base.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>📝 Sintaxe: bloco--modificador ou bloco__elemento--modificador</h4>
+            <p>Modificadores são nomeados usando <strong>dois hífens (--)</strong> após o bloco ou elemento.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>🎯 Sempre Opcionais</h4>
+            <p>Modificadores são aplicados apenas quando necessário, mantendo o estilo base intacto.</p>
+        </div>
+
+        <h2>Exemplo Prático: Botões com Modificadores</h2>
+
+        <div class="demo-section">
+            <h4>Botões com diferentes modificadores:</h4>
+            <button class="button">Botão Padrão</button>
+            <button class="button button--large">Botão Grande</button>
+            <button class="button button--small">Botão Pequeno</button>
+            <br><br>
+            <button class="button button--success">Sucesso</button>
+            <button class="button button--danger">Perigo</button>
+            <button class="button button--disabled">Desabilitado</button>
+        </div>
+
+        <h3>Código CSS dos Modificadores:</h3>
+        <div class="code-example">
+/* Bloco base */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Modificadores de tamanho */
+.button<span class="highlight-mod">--large</span> {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+.button<span class="highlight-mod">--small</span> {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* Modificadores de cor */
+.button<span class="highlight-mod">--success</span> {
+    background-color: #28a745;
+}
+
+.button<span class="highlight-mod">--danger</span> {
+    background-color: #dc3545;
+}
+
+.button<span class="highlight-mod">--disabled</span> {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+        </div>
+
+        <h2>HTML com Modificadores:</h2>
+        <div class="code-example">
+&lt;button class="button"&gt;Botão Padrão&lt;/button&gt;
+&lt;button class="button button<span class="highlight-mod">--large</span>"&gt;Botão Grande&lt;/button&gt;
+&lt;button class="button button<span class="highlight-mod">--success</span>"&gt;Sucesso&lt;/button&gt;
+        </div>
+
+        <h2>Tipos de Modificadores</h2>
+
+        <h3>1. Modificadores Booleanos</h3>
+        <div class="concept-card">
+            <h4>✅ Sim/Não (Ativo/Inativo)</h4>
+            <p>Modificadores que simplesmente ativam ou desativam uma característica.</p>
+            <div class="code-example">
+.button<span class="highlight-mod">--disabled</span> { /* Desabilitado */ }
+.card<span class="highlight-mod">--featured</span> { /* Em destaque */ }
+.menu<span class="highlight-mod">--open</span> { /* Menu aberto */ }
+            </div>
+        </div>
+
+        <h3>2. Modificadores com Valor</h3>
+        <div class="concept-card">
+            <h4>🔢 Com valores específicos</h4>
+            <p>Modificadores que especificam um valor particular (tamanho, cor, etc.).</p>
+            <div class="code-example">
+.button<span class="highlight-mod">--size-large</span> { /* Tamanho específico */ }
+.text<span class="highlight-mod">--color-red</span> { /* Cor específica */ }
+.card<span class="highlight-mod">--theme-dark</span> { /* Tema específico */ }
+            </div>
+        </div>
+
+        <h2>Exemplo: Cards com Modificadores</h2>
+
+        <div class="demo-section">
+            <h4>Cards com diferentes modificadores:</h4>
+
+            <div class="card">
+                <h3 class="card__title">Card Normal</h3>
+                <p class="card__content">Este é um card com aparência padrão.</p>
+            </div>
+
+            <div class="card card--featured">
+                <h3 class="card__title">Card em Destaque</h3>
+                <p class="card__content">Este card tem modificador de destaque com borda dourada.</p>
+            </div>
+
+            <div class="card card--highlighted">
+                <h3 class="card__title">Card Destaque Azul</h3>
+                <p class="card__content">Este card tem modificador de destaque com borda azul.</p>
+            </div>
+        </div>
+
+        <h3>Código CSS dos modificadores de card:</h3>
+        <div class="code-example">
+/* Bloco base */
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid transparent;
+}
+
+/* Modificadores do bloco */
+.card<span class="highlight-mod">--featured</span> {
+    border-color: gold;
+    background: linear-gradient(135deg, #fffacd 0%, #fff 100%);
+}
+
+.card<span class="highlight-mod">--highlighted</span> {
+    border-color: #007acc;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+        </div>
+
+        <h2>Modificadores de Elementos</h2>
+
+        <div class="concept-card">
+            <h4>🎯 Modificando Elementos Específicos</h4>
+            <p>Modificadores podem alterar apenas elementos específicos dentro de um bloco.</p>
+        </div>
+
+        <div class="code-example">
+/* Modificador no bloco afeta todos os elementos */
+.card<span class="highlight-mod">--dark</span> .card__title {
+    color: white;
+}
+
+.card<span class="highlight-mod">--dark</span> .card__content {
+    color: #ccc;
+}
+
+/* Modificador específico de elemento */
+.card__title<span class="highlight-mod">--large</span> {
+    font-size: 2em;
+}
+
+.card__content<span class="highlight-mod">--centered</span> {
+    text-align: center;
+}
+        </div>
+
+        <h2>Convenções de Nomenclatura</h2>
+
+        <div class="concept-card">
+            <h4>📝 Regras para Modificadores</h4>
+            <ul>
+                <li>Use apenas letras minúsculas</li>
+                <li>Separe palavras com hífen: <code>button--size-large</code></li>
+                <li>Seja descritivo sobre o que o modificador faz</li>
+                <li>Prefira modificadores booleanos quando possível</li>
+                <li>Evite modificadores muito específicos que criam dependências</li>
+            </ul>
+        </div>
+
+        <h2>Exemplos de Bons Modificadores</h2>
+
+        <div class="code-example">
+/* Bons modificadores */
+.button<span class="highlight-mod">--disabled</span> {}     /* Estado booleano */
+.button<span class="highlight-mod">--large</span> {}       /* Tamanho */
+.button<span class="highlight-mod">--primary</span> {}     /* Cor/semântica */
+.card<span class="highlight-mod">--featured</span> {}      /* Destaque */
+.menu<span class="highlight-mod">--open</span> {}         /* Estado */
+
+/* Menos recomendados */
+.button<span class="highlight-mod">--margin-top-10</span> {} /* Muito específico */
+.button<span class="highlight-mod">--red-bg</span> {}      /* Descritivo demais */
+        </div>
+
+        <h2>Próximos Passos</h2>
+
+        <div class="concept-card">
+            <p>Agora que você entende blocos, elementos e modificadores, vamos ver <strong>exemplos completos</strong> da metodologia BEM em ação.</p>
+            <p><a href="bem-examples.html">➡️ Ir para Exemplos Completos</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

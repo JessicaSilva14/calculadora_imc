@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM - Boas Práticas</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Títulos */
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        h2 { color: #666; margin: 40px 0 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        h3 { color: #444; margin: 30px 0 15px 0; }
+
+        /* Código */
+        .code-example { background: #f8f8f8; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; }
+
+        /* Cards explicativos */
+        .concept-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .concept-card h4 { color: #17a2b8; margin-bottom: 10px; }
+
+        /* Exemplos visuais */
+        .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #ddd; }
+
+        /* Destaques */
+        .highlight-good { background: #d4edda; padding: 2px 4px; border-radius: 2px; color: #155724; }
+        .highlight-bad { background: #f8d7da; padding: 2px 4px; border-radius: 2px; color: #721c24; }
+
+        /* Listas */
+        .practice-list { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .practice-list ul { list-style: none; padding: 0; }
+        .practice-list li { padding: 10px 0; border-bottom: 1px solid #eee; }
+        .practice-list li:last-child { border-bottom: none; }
+        .practice-list .icon { display: inline-block; width: 24px; height: 24px; margin-right: 10px; border-radius: 50%; text-align: center; line-height: 24px; font-weight: bold; }
+
+        .practice-list .do { background: #28a745; color: white; }
+        .practice-list .dont { background: #dc3545; color: white; }
+        .practice-list .tip { background: #ffc107; color: black; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ BEM - Boas Práticas</h1>
+
+        <div class="concept-card">
+            <h4>Diretrizes para Implementação Eficiente</h4>
+            <p>Seguir boas práticas garante que seu código BEM seja sustentável, escalável e fácil de manter ao longo do tempo.</p>
+        </div>
+
+        <h2>Princípios Gerais</h2>
+
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Mantenha consistência:</strong> Use sempre a mesma convenção de nomenclatura em todo o projeto
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Seja descritivo:</strong> Nomes de classes devem ser auto-explicativos sobre sua função
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Evite profundidade excessiva:</strong> Não crie hierarquias muito profundas de elementos
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Documente seu código:</strong> Comente blocos complexos e decisões importantes
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Use ferramentas:</strong> Considere pré-processadores como Sass para nesting controlado
+                </li>
+            </ul>
+        </div>
+
+        <h2>Nomenclatura</h2>
+
+        <h3>Blocos</h3>
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Use nomes específicos:</strong> <code>user-profile</code> ao invés de <code>profile</code>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Separe palavras com hífen:</strong> <code>search-form</code>, <code>product-card</code>
+                </li>
+                <li>
+                    <span class="icon dont">✗</span>
+                    <strong>Evite abreviações obscuras:</strong> Prefira <code>button</code> ao invés de <code>btn</code>
+                </li>
+                <li>
+                    <span class="icon dont">✗</span>
+                    <strong>Não use camelCase:</strong> Use <code>user-profile</code>, não <code>userProfile</code>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Elementos</h3>
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Seja específico sobre a função:</strong> <code>search-form__input</code>, <code>product-card__title</code>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Use substantivos descritivos:</strong> <code>__button</code>, <code>__title</code>, <code>__content</code>
+                </li>
+                <li>
+                    <span class="icon dont">✗</span>
+                    <strong>Evite elementos genéricos:</strong> Não use <code>__div</code> ou <code>__span</code>
+                </li>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Elementos podem ter sub-elementos:</strong> <code>menu__item__link</code> (use com moderação)
+                </li>
+            </ul>
+        </div>
+
+        <h3>Modificadores</h3>
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Prefira booleanos:</strong> <code>--disabled</code>, <code>--active</code>, <code>--featured</code>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Seja semântico:</strong> <code>--large</code>, <code>--small</code>, <code>--primary</code>
+                </li>
+                <li>
+                    <span class="icon dont">✗</span>
+                    <strong>Evite valores específicos:</strong> Prefira <code>--large</code> ao invés de <code>--width-200</code>
+                </li>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Use modificadores de elemento:</strong> <code>product-card__title--large</code>
+                </li>
+            </ul>
+        </div>
+
+        <h2>Estrutura e Organização</h2>
+
+        <h3>Arquivos CSS</h3>
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Separe por categoria:</strong> <code>base.css</code>, <code>layout.css</code>, <code>module.css</code>, <code>theme.css</code>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Use imports:</strong> <code>@import url('layout.css');</code> para organização modular
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Minifique para produção:</strong> Use ferramentas para otimizar CSS final
+                </li>
+            </ul>
+        </div>
+
+        <h3>Hierarquia de Elementos</h3>
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Mantenha shallow hierarchy:</strong> Evite mais de 2-3 níveis de profundidade
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Quebre blocos grandes:</strong> Se um bloco tem muitos elementos, considere dividi-lo
+                </li>
+                <li>
+                    <span class="icon dont">✗</span>
+                    <strong>Evite hierarquias profundas:</strong> <code>page__section__article__content__text__link</code>
+                </li>
+            </ul>
+        </div>
+
+        <h2>Exemplos Práticos</h2>
+
+        <h3>✅ Estrutura Recomendada</h3>
+        <div class="code-example">
+/* Estrutura organizada */
+src/
+├── css/
+│   ├── base.css          /* Reset, tipografia base */
+│   ├── layout.css        /* Grid, containers */
+│   ├── modules/          /* Componentes */
+│   │   ├── button.css
+│   │   ├── card.css
+│   │   └── form.css
+│   ├── themes/           /* Temas */
+│   │   ├── theme-a.css
+│   │   └── theme-b.css
+│   └── main.css          /* Arquivo principal com imports */
+        </div>
+
+        <h3>✅ Boas Práticas de CSS</h3>
+        <div class="code-example">
+/* ✅ Agrupe propriedades relacionadas */
+.button {
+    /* Posicionamento */
+    display: inline-block;
+
+    /* Dimensões */
+    padding: 12px 24px;
+
+    /* Aparência */
+    background: #007acc;
+    color: white;
+    border-radius: 4px;
+
+    /* Comportamento */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* ✅ Use modificadores para variações */
+.button--large {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+.button--danger {
+    background: #dc3545;
+}
+
+/* ✅ Evite !important */
+.button--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+        </div>
+
+        <h3>❌ Anti-patterns a Evitar</h3>
+        <div class="code-example">
+/* ❌ Não use IDs para estilos */
+#my-button {
+    background: red;
+}
+
+/* ❌ Evite seletores complexos */
+.header .nav .menu-item .link:hover {
+    color: blue;
+}
+
+/* ❌ Não crie dependências entre blocos */
+.product-card .button { /* ❌ Acopla componentes */
+    margin-top: 10px;
+}
+
+/* ❌ Evite estilos genéricos demais */
+.red-text {
+    color: red;
+}
+        </div>
+
+        <h2>Ferramentas e Workflows</h2>
+
+        <div class="concept-card">
+            <h4>🛠️ Pré-processadores</h4>
+            <p><strong>Sass/SCSS:</strong> Permite nesting controlado e variáveis</p>
+            <div class="code-example">
+// SCSS com BEM
+.product-card {
+    background: white;
+
+    &__title {
+        font-size: 1.3em;
+    }
+
+    &__button {
+        background: $primary-color;
+
+        &--large {
+            padding: 16px 32px;
+        }
+    }
+
+    &--featured {
+        border: 3px solid gold;
+    }
+}
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h4>🔧 Linters e Validadores</h4>
+            <p><strong>Stylelint:</strong> Verifica conformidade com convenções BEM</p>
+            <p><strong>CSS Comb:</strong> Ordena propriedades CSS de forma consistente</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>📦 Metodologias Complementares</h4>
+            <p><strong>SMACSS:</strong> Categoriza CSS (Base, Layout, Module, State, Theme)</p>
+            <p><strong>ITCSS:</strong> Organiza CSS por camadas de especificidade</p>
+        </div>
+
+        <h2>Performance e Manutenção</h2>
+
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Otimize seletores:</strong> BEM naturalmente cria seletores eficientes
+                </li>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Remova CSS não utilizado:</strong> Use ferramentas como PurgeCSS
+                </li>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Versione seus componentes:</strong> Documente mudanças em componentes
+                </li>
+                <li>
+                    <span class="icon tip">💡</span>
+                    <strong>Crie guias de estilo:</strong> Documente componentes e seus modificadores
+                </li>
+            </ul>
+        </div>
+
+        <h2>Checklist de Qualidade</h2>
+
+        <div class="practice-list">
+            <ul>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Todos os blocos têm nomes descritivos?</strong>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Elementos estão semanticamente corretos?</strong>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Modificadores são reutilizáveis?</strong>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>CSS está bem organizado e comentado?</strong>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Não há conflitos de nomes de classes?</strong>
+                </li>
+                <li>
+                    <span class="icon do">✓</span>
+                    <strong>Componentes são independentes?</strong>
+                </li>
+            </ul>
+        </div>
+
+        <h2>Próximos Passos</h2>
+
+        <div class="concept-card">
+            <p>Agora que você conhece as boas práticas, vamos comparar BEM com <strong>outras metodologias</strong> de CSS.</p>
+            <p><a href="bem-vs-others.html">➡️ Ir para Comparação de Metodologias</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

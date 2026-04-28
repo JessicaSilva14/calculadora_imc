@@ -1,0 +1,86 @@
+/* ===================================
+    THEME-A - Paleta de cores e estilos customizados
+   =================================== */
+
+/* Variáveis do Tema A */
+:root {
+    /* Cores Tema A - Paleta quente e vibrante */
+    --theme-a-primary: #FF6B35;
+    --theme-a-secondary: #004E89;
+    --theme-a-accent: #F7931E;
+    --theme-a-highlight: #FFF8DC;
+    
+    --theme-a-text-dark: #1a1a1a;
+    --theme-a-text-light: #666666;
+    --theme-a-bg-light: #fafafa;
+    --theme-a-bg-card: #ffffff;
+    
+    --theme-a-shadow-sm: 0 2px 6px rgba(255, 107, 53, 0.1);
+    --theme-a-shadow-md: 0 6px 16px rgba(255, 107, 53, 0.15);
+    --theme-a-border-color: #FF6B35;
+}
+
+/* Tema A - Estilos da página */
+.theme-a body {
+    background-color: var(--theme-a-bg-light);
+    color: var(--theme-a-text-dark);
+}
+
+/* Tema A - Componente Produto */
+.theme-a .produto {
+    background-color: var(--theme-a-bg-card);
+    box-shadow: var(--theme-a-shadow-sm);
+    border: 1px solid #f0f0f0;
+}
+
+.theme-a .produto:hover {
+    box-shadow: var(--theme-a-shadow-md);
+    border-color: var(--theme-a-primary);
+}
+
+/* Tema A - Elementos do Produto */
+.theme-a .produto__nome {
+    color: var(--theme-a-text-dark);
+}
+
+.theme-a .produto__descricao {
+    color: var(--theme-a-text-light);
+}
+
+/* Tema A - Modificador Destaque */
+.theme-a .produto--destaque {
+    border: 3px solid var(--theme-a-primary);
+    background: linear-gradient(135deg, var(--theme-a-highlight) 0%, var(--theme-a-bg-card) 100%);
+}
+
+.theme-a .produto--destaque .produto__nome {
+    color: var(--theme-a-primary);
+    font-weight: 700;
+}
+
+.theme-a .produto--destaque .produto__descricao {
+    color: var(--theme-a-secondary);
+    font-weight: 500;
+}
+
+/* Tema A - Badge/Rótulo opcional para destaque */
+.theme-a .produto--destaque::before {
+    content: "★ DESTAQUE ★";
+    display: block;
+    background: linear-gradient(90deg, var(--theme-a-primary), var(--theme-a-accent));
+    color: white;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Tema A - Grid responsivo */
+.theme-a .l-container {
+    background-color: var(--theme-a-bg-light);
+}
+
+.theme-a .l-grid {
+    gap: 1.5rem;
+}

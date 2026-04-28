@@ -1,0 +1,562 @@
+// ===================================
+// SASS + BEM - Arquitetura SMACSS Completa
+// ===================================
+
+// ===================================
+// BASE - Variáveis e Configurações
+// ===================================
+
+// Cores principais
+$color-primary: #FF6B35;
+$color-secondary: #004E89;
+$color-accent: #F7931E;
+
+// Cores neutras
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray-100: #f8f9fa;
+$color-gray-200: #e9ecef;
+$color-gray-300: #dee2e6;
+$color-gray-400: #ced4da;
+$color-gray-500: #adb5bd;
+$color-gray-600: #6c757d;
+$color-gray-700: #495057;
+$color-gray-800: #343a40;
+$color-gray-900: #212529;
+
+// Espaçamentos
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+$spacing-xl: 64px;
+
+// Tipografia
+$font-family-base: 'Arial', sans-serif;
+$font-family-heading: 'Georgia', serif;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Bordas e sombras
+$border-radius-sm: 4px;
+$border-radius: 8px;
+$border-radius-lg: 12px;
+$border-radius-full: 50%;
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Container
+$container-max-width: 1200px;
+
+// Transições
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// ===================================
+// MIXINS - Funções Reutilizáveis
+// ===================================
+
+// Mixin para responsividade
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Mixin para flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Mixin para botões
+@mixin button-base {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  border: 2px solid transparent;
+  border-radius: $border-radius;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-align: center;
+}
+
+// Mixin para componentes com sombra
+@mixin card-base {
+  background: $color-white;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  overflow: hidden;
+  transition: all $transition-base;
+}
+
+// ===================================
+// PLACEHOLDERS - Estilos Reutilizáveis
+// ===================================
+
+%text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ===================================
+// BASE - Reset e Estilos Globais
+// ===================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-gray-800;
+  background-color: $color-gray-100;
+  margin: 0;
+  padding: 0;
+}
+
+// ===================================
+// LAYOUT - Estrutura da Página
+// ===================================
+
+.l-container {
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include respond-to('sm') {
+    padding: 0 $spacing-sm;
+  }
+}
+
+.l-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  margin: $spacing-xl 0;
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+}
+
+// ===================================
+// MODULE - Componentes BEM
+// ===================================
+
+// THEME-SELECTOR - Seletor de Temas
+.theme-selector {
+  position: fixed;
+  top: $spacing-lg;
+  right: $spacing-lg;
+  @include card-base;
+  padding: $spacing-md;
+  display: flex;
+  gap: $spacing-sm;
+  z-index: 1000;
+
+  &__button {
+    @include button-base;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+    background: $color-gray-200;
+    color: $color-gray-700;
+    border-color: transparent;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+
+    // Modificadores para temas
+    &--theme-a {
+      background: $color-primary;
+      color: $color-white;
+
+      &.theme-selector__button--active {
+        background: #e55a2b; // Tom mais escuro do tema A
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+      }
+    }
+
+    &--theme-b {
+      background: $color-secondary;
+      color: $color-white;
+
+      &.theme-selector__button--active {
+        background: #257a9b; // Tom mais escuro do tema B
+        box-shadow: 0 0 0 2px rgba($color-secondary, 0.2);
+      }
+    }
+
+    &--active {
+      border-color: currentColor;
+      box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+    }
+  }
+}
+
+// HEADER-SECTION - Cabeçalho da Página
+.header-section {
+  padding: $spacing-xl 0 0 0;
+  text-align: center;
+  margin-bottom: $spacing-xl;
+
+  &__title {
+    margin-bottom: 0;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-gray-800;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    color: $color-gray-600;
+    margin-bottom: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+  }
+}
+
+// PRODUTO - Componente Principal
+.produto {
+  @include card-base;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  // Elementos do produto
+  &__imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform $transition-base;
+
+    .produto:hover & {
+      transform: scale(1.02);
+    }
+  }
+
+  &__conteudo {
+    padding: $spacing-md;
+  }
+
+  &__titulo {
+    font-size: $font-size-lg;
+    margin: 0 0 $spacing-sm 0;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-800;
+    line-height: 1.3;
+  }
+
+  &__descricao {
+    color: $color-gray-600;
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+  }
+
+  // LEGACY: Compatibilidade com nomes antigos
+  &__nome {
+    @extend .produto__titulo;
+  }
+
+  // Modificadores
+  &--destaque {
+    border: 3px solid gold;
+    background: linear-gradient(135deg, #fffacd 0%, #fff 100%);
+    position: relative;
+
+    &::before {
+      content: "⭐ DESTAQUE";
+      position: absolute;
+      top: $spacing-sm;
+      right: $spacing-sm;
+      background: gold;
+      color: $color-gray-800;
+      padding: 4px $spacing-sm;
+      border-radius: $border-radius-full;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 1;
+    }
+
+    .produto__titulo {
+      color: #cc8800;
+      font-weight: $font-weight-bold;
+    }
+
+    .produto__descricao {
+      color: #8b6914;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &--ativo {
+    animation: produto-pulse 2s infinite;
+  }
+
+  &--compacto {
+    @include respond-to('sm') {
+      margin-bottom: $spacing-sm;
+
+      .produto__conteudo {
+        padding: $spacing-sm;
+      }
+
+      .produto__titulo {
+        font-size: $font-size-base;
+      }
+
+      .produto__imagem {
+        height: 150px;
+      }
+    }
+  }
+}
+
+// INFO-SECTION - Seção Informativa
+.info-section {
+  margin-top: $spacing-xl * 1.5;
+  padding: $spacing-xl;
+  background-color: rgba($color-primary, 0.05);
+  border-radius: $border-radius;
+  text-align: center;
+  color: $color-gray-600;
+  border: 1px solid rgba($color-primary, 0.1);
+
+  &__title {
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__content {
+    line-height: 1.6;
+
+    strong {
+      color: $color-gray-800;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+// ===================================
+// STATE - Estados e Modificadores Globais
+// ===================================
+
+.is-active {
+  border-color: #cc8800;
+}
+
+.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ===================================
+// THEME - Aplicação de Temas aos Componentes
+// ===================================
+
+// Tema A (Quente e Vibrante)
+.theme-a {
+  body {
+    background-color: #fafafa;
+    color: #1a1a1a;
+  }
+
+  .produto {
+    background-color: $color-white;
+    box-shadow: $shadow;
+    border: 1px solid #f0f0f0;
+
+    &:hover {
+      box-shadow: $shadow-md;
+      border-color: $color-primary;
+    }
+  }
+
+  .produto__titulo {
+    color: #1a1a1a;
+  }
+
+  .produto__descricao {
+    color: #666666;
+  }
+
+  .info-section {
+    background-color: rgba($color-primary, 0.05);
+    border-color: rgba($color-primary, 0.1);
+  }
+
+  .info-section__title {
+    color: $color-primary;
+  }
+
+  .header-section__title {
+    color: $color-primary;
+  }
+}
+
+// Tema B (Elegante e Sofisticado)
+.theme-b {
+  body {
+    background-color: $color-gray-100;
+    color: #1a1a1a;
+  }
+
+  .produto {
+    background-color: $color-white;
+    box-shadow: $shadow;
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-lg;
+
+    &:hover {
+      box-shadow: $shadow-md;
+      border-color: $color-secondary;
+      transform: translateY(-2px);
+    }
+  }
+
+  .produto__titulo {
+    color: #1a1a1a;
+    font-family: $font-family-heading;
+  }
+
+  .produto__descricao {
+    color: #5a5a5a;
+  }
+
+  .info-section {
+    background-color: rgba($color-secondary, 0.05);
+    border-color: rgba($color-secondary, 0.1);
+  }
+
+  .info-section__title {
+    color: $color-secondary;
+  }
+
+  .header-section__title {
+    color: $color-secondary;
+  }
+}
+
+// ===================================
+// ANIMATIONS - Animações
+// ===================================
+
+@keyframes produto-pulse {
+  0% {
+    box-shadow: $shadow;
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+  100% {
+    box-shadow: $shadow;
+  }
+}
+
+// ===================================
+// UTILITIES - Classes Utilitárias
+// ===================================
+
+// Utilitários de texto
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-truncate { @extend %text-truncate; }
+.visually-hidden { @extend %visually-hidden; }
+
+// Utilitários de espaçamento
+.m-0 { margin: 0; }
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+
+// Utilitários de display
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+
+// Utilitários responsivos
+@include respond-to('sm') {
+  .d-sm-none { display: none; }
+  .d-sm-block { display: block; }
+  .d-sm-flex { display: flex; }
+}

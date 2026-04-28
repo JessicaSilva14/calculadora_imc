@@ -1,0 +1,26 @@
+{
+  "name": "bem-sass-project",
+  "version": "1.0.0",
+  "description": "Projeto demonstrativo de BEM com SASS - Metodologia SMACSS",
+  "main": "index.html",
+  "scripts": {
+    "build-css": "sass smacss/main.scss smacss/main.css --style=compressed",
+    "watch-css": "sass --watch smacss/main.scss smacss/main.css",
+    "dev": "npm run watch-css",
+    "build": "npm run build-css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bem",
+    "sass",
+    "smacss",
+    "css",
+    "methodology",
+    "frontend"
+  ],
+  "author": "BEM Project",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.99.0"
+  }
+}

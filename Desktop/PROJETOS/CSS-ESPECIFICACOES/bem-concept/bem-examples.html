@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM - Exemplos Completos</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Títulos */
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        h2 { color: #666; margin: 40px 0 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        h3 { color: #444; margin: 30px 0 15px 0; }
+
+        /* Código */
+        .code-example { background: #f8f8f8; border-left: 4px solid #6f42c1; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; overflow-x: auto; }
+
+        /* Cards explicativos */
+        .concept-card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .concept-card h4 { color: #6f42c1; margin-bottom: 10px; }
+
+        /* Exemplos visuais */
+        .demo-section { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #ddd; }
+
+        /* ===================================
+           COMPONENTES BEM PARA DEMONSTRAÇÃO
+           =================================== */
+
+        /* Header/Navigation */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .header__logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        .header__nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .header__nav-link {
+            color: #bdc3c7;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .header__nav-link:hover {
+            background: #34495e;
+            color: white;
+        }
+
+        .header__nav-link--active {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card__image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+
+        .product-card__content {
+            padding: 20px;
+        }
+
+        .product-card__title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-card__price {
+            font-size: 1.2em;
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-card__description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .product-card__button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .product-card__button:hover {
+            background: #0056b3;
+        }
+
+        /* Modificadores do Product Card */
+        .product-card--featured {
+            border: 3px solid #ffc107;
+            background: linear-gradient(135deg, #fff3cd 0%, #fff 100%);
+        }
+
+        .product-card--out-of-stock .product-card__button {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .product-card__price--discounted {
+            text-decoration: line-through;
+            color: #dc3545;
+        }
+
+        .product-card__price--sale {
+            color: #dc3545;
+            font-size: 1.4em;
+        }
+
+        /* Search Form */
+        .search-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .search-form__group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-form__input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .search-form__select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .search-form__button {
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-form__button:hover {
+            background: #218838;
+        }
+
+        .search-form__checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-form__checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Grid Layout */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header__nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-form__group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 BEM - Exemplos Completos</h1>
+
+        <div class="concept-card">
+            <h4>Exemplos Práticos da Metodologia BEM</h4>
+            <p>Abaixo você verá componentes reais implementados seguindo rigorosamente a metodologia BEM, com blocos, elementos e modificadores.</p>
+        </div>
+
+        <h2>1. Header com Navegação</h2>
+
+        <div class="demo-section">
+            <div class="header">
+                <div class="header__logo">Minha Loja</div>
+                <nav class="header__nav">
+                    <a href="#" class="header__nav-link header__nav-link--active">Home</a>
+                    <a href="#" class="header__nav-link">Produtos</a>
+                    <a href="#" class="header__nav-link">Sobre</a>
+                    <a href="#" class="header__nav-link">Contato</a>
+                </nav>
+            </div>
+        </div>
+
+        <h3>Código BEM do Header:</h3>
+        <div class="code-example">
+&lt;div class="header"&gt;
+    &lt;div class="header__logo"&gt;Minha Loja&lt;/div&gt;
+    &lt;nav class="header__nav"&gt;
+        &lt;a href="#" class="header__nav-link header__nav-link--active"&gt;Home&lt;/a&gt;
+        &lt;a href="#" class="header__nav-link"&gt;Produtos&lt;/a&gt;
+        &lt;a href="#" class="header__nav-link"&gt;Sobre&lt;/a&gt;
+        &lt;a href="#" class="header__nav-link"&gt;Contato&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+        </div>
+
+        <h2>2. Formulário de Busca</h2>
+
+        <div class="demo-section">
+            <form class="search-form">
+                <div class="search-form__group">
+                    <input type="text" class="search-form__input" placeholder="Buscar produtos...">
+                    <select class="search-form__select">
+                        <option>Todos os departamentos</option>
+                        <option>Eletrônicos</option>
+                        <option>Roupas</option>
+                        <option>Livros</option>
+                    </select>
+                    <button type="submit" class="search-form__button">Buscar</button>
+                </div>
+
+                <div class="search-form__checkbox-group">
+                    <label class="search-form__checkbox-item">
+                        <input type="checkbox"> Em estoque
+                    </label>
+                    <label class="search-form__checkbox-item">
+                        <input type="checkbox"> Com desconto
+                    </label>
+                    <label class="search-form__checkbox-item">
+                        <input type="checkbox"> Frete grátis
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <h3>Código BEM do Formulário:</h3>
+        <div class="code-example">
+&lt;form class="search-form"&gt;
+    &lt;div class="search-form__group"&gt;
+        &lt;input type="text" class="search-form__input" placeholder="Buscar produtos..."&gt;
+        &lt;select class="search-form__select"&gt;
+            &lt;option&gt;Todos os departamentos&lt;/option&gt;
+            ...
+        &lt;/select&gt;
+        &lt;button type="submit" class="search-form__button"&gt;Buscar&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="search-form__checkbox-group"&gt;
+        &lt;label class="search-form__checkbox-item"&gt;
+            &lt;input type="checkbox"&gt; Em estoque
+        &lt;/label&gt;
+        ...
+    &lt;/div&gt;
+&lt;/form&gt;
+        </div>
+
+        <h2>3. Cards de Produto com Modificadores</h2>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-card__image">📱 Smartphone</div>
+                <div class="product-card__content">
+                    <h3 class="product-card__title">Smartphone XYZ</h3>
+                    <div class="product-card__price">R$ 1.299,00</div>
+                    <p class="product-card__description">
+                        Smartphone com câmera de 48MP, processador octa-core e bateria de longa duração.
+                    </p>
+                    <button class="product-card__button">Comprar</button>
+                </div>
+            </div>
+
+            <div class="product-card product-card--featured">
+                <div class="product-card__image">💻 Notebook</div>
+                <div class="product-card__content">
+                    <h3 class="product-card__title">Notebook Gamer Pro</h3>
+                    <div class="product-card__price product-card__price--discounted">R$ 4.999,00</div>
+                    <div class="product-card__price product-card__price--sale">R$ 3.999,00</div>
+                    <p class="product-card__description">
+                        Notebook gamer com RTX 3060, Intel i7 e 16GB RAM. Produto em destaque!
+                    </p>
+                    <button class="product-card__button">Comprar com Desconto</button>
+                </div>
+            </div>
+
+            <div class="product-card product-card--out-of-stock">
+                <div class="product-card__image">🎧 Headphone</div>
+                <div class="product-card__content">
+                    <h3 class="product-card__title">Headphone Wireless</h3>
+                    <div class="product-card__price">R$ 299,00</div>
+                    <p class="product-card__description">
+                        Headphone sem fio com cancelamento de ruído ativo e bateria de 30h.
+                    </p>
+                    <button class="product-card__button">Esgotado</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Código BEM dos Cards:</h3>
+        <div class="code-example">
+&lt;div class="product-card"&gt;
+    &lt;div class="product-card__image"&gt;📱 Smartphone&lt;/div&gt;
+    &lt;div class="product-card__content"&gt;
+        &lt;h3 class="product-card__title"&gt;Smartphone XYZ&lt;/h3&gt;
+        &lt;div class="product-card__price"&gt;R$ 1.299,00&lt;/div&gt;
+        &lt;p class="product-card__description"&gt;...&lt;/p&gt;
+        &lt;button class="product-card__button"&gt;Comprar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="product-card product-card--featured"&gt;
+    &lt;div class="product-card__image"&gt;💻 Notebook&lt;/div&gt;
+    &lt;div class="product-card__content"&gt;
+        &lt;h3 class="product-card__title"&gt;Notebook Gamer Pro&lt;/h3&gt;
+        &lt;div class="product-card__price product-card__price--discounted"&gt;R$ 4.999,00&lt;/div&gt;
+        &lt;div class="product-card__price product-card__price--sale"&gt;R$ 3.999,00&lt;/div&gt;
+        &lt;p class="product-card__description"&gt;...&lt;/p&gt;
+        &lt;button class="product-card__button"&gt;Comprar com Desconto&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="product-card product-card--out-of-stock"&gt;
+    &lt;div class="product-card__image"&gt;🎧 Headphone&lt;/div&gt;
+    &lt;div class="product-card__content"&gt;
+        &lt;h3 class="product-card__title"&gt;Headphone Wireless&lt;/h3&gt;
+        &lt;div class="product-card__price"&gt;R$ 299,00&lt;/div&gt;
+        &lt;p class="product-card__description"&gt;...&lt;/p&gt;
+        &lt;button class="product-card__button"&gt;Esgotado&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </div>
+
+        <h2>4. CSS Completo dos Componentes</h2>
+
+        <div class="code-example">
+/* ===================================
+   HEADER
+   =================================== */
+.header {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+}
+
+.header__logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.header__nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.header__nav-link {
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.header__nav-link:hover {
+    background: #34495e;
+    color: white;
+}
+
+.header__nav-link--active {
+    background: #3498db;
+    color: white;
+}
+
+/* ===================================
+   PRODUCT CARD
+   =================================== */
+.product-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card__image {
+    width: 100%;
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card__content {
+    padding: 20px;
+}
+
+.product-card__title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.product-card__price {
+    font-size: 1.2em;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card__description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.product-card__button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Modificadores */
+.product-card--featured {
+    border: 3px solid #ffc107;
+    background: linear-gradient(135deg, #fff3cd 0%, #fff 100%);
+}
+
+.product-card--out-of-stock .product-card__button {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.product-card__price--discounted {
+    text-decoration: line-through;
+    color: #dc3545;
+}
+
+.product-card__price--sale {
+    color: #dc3545;
+    font-size: 1.4em;
+}
+        </div>
+
+        <h2>Benefícios Demonstrados</h2>
+
+        <div class="concept-card">
+            <h4>✅ Componentes Reutilizáveis</h4>
+            <p>Os blocos <code>product-card</code>, <code>header</code> e <code>search-form</code> podem ser reutilizados em qualquer página.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Modificadores Flexíveis</h4>
+            <p>Modificadores como <code>--featured</code>, <code>--out-of-stock</code> alteram aparência sem duplicar código.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Estrutura Clara</h4>
+            <p>Nomes de classes auto-explicativos facilitam manutenção e colaboração.</p>
+        </div>
+
+        <div class="concept-card">
+            <h4>✅ Escopo Isolado</h4>
+            <p>Cada bloco tem seu próprio escopo, evitando conflitos de CSS.</p>
+        </div>
+
+        <h2>Próximos Passos</h2>
+
+        <div class="concept-card">
+            <p>Agora que você viu exemplos completos, vamos conhecer as <strong>boas práticas</strong> da metodologia BEM.</p>
+            <p><a href="bem-best-practices.html">➡️ Ir para Boas Práticas</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
