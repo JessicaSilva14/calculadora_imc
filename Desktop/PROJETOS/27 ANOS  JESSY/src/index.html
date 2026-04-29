@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floresta Encantada - Aniversário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.scss">
+</head>
+<body>
+    <!-- CAIXA 1: O CABEÇALHO (Fica no topo) -->
+    <header class="header">
+        <div class="header__container">
+            <span class="header__logo">J27</span>
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item">14 de Abril</li>
+                    <li class="header__item">18:00h</li>
+                    <li class="header__item">Floresta Encantada</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CAIXA 2: O HERO (O que já tínhamos feito) -->
+    <section class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title">Floresta Encantada</h1>
+            <p class="hero__text">Venha celebrar meus 27 anos em um lugar mágico.</p>
+            
+            <!-- Contador -->
+            <div id="countdown">
+                <div class="time-block">
+                    <span id="days">00</span>
+                    <label>Dias</label>
+                </div>
+                <div class="time-block">
+                    <span id="hours">00</span>
+                    <label>Horas</label>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">00</span>
+                    <label>Minutos</label>
+                </div>
+                <div class="time-block">
+                    <span id="seconds">00</span>
+                    <label>Segundos</label>
+                </div>
+            </div>
+
+            <button class="hero__button">Confirmar Presença</button>
+        </div>
+    </section>
+
+        <section class="about">
+    <div class="container">
+        <div class="about__grid">
+            <div class="about__content">
+                <h2 class="about__title">Sobre a Celebração</h2>
+                <p class="about__description">
+                    Sejam bem-vindos à minha Floresta Encantada. Este ano, decidi celebrar meus 27 anos em um ambiente onde a magia e a natureza se encontram. Será uma noite de brindes, música e boas memórias.
+                </p>
+                <ul class="about__details">
+                    <li><strong>Dress Code:</strong> Passeio Completo com um toque de brilho.</li>
+                    <li><strong>Presentes:</strong> Sua presença é o maior presente, mas se desejar, receberei com todo o coração.</li>
+                    <li><strong>Confirmar até:</strong> 15 de Janeiro.</li>
+                </ul>
+            </div>
+            <div class="about__info">
+                <h3 class="about__subtitle">Localização & Horários</h3>
+                <div class="about__card">
+                    <p><strong>Início:</strong> 18:00h</p>
+                    <p><strong>Jantar:</strong> 20:00h</p>
+                    <p><strong>Local:</strong> Espaço Luar, Rua das Flores, 123 - São Paulo/SP</p>
+                    <a href="#" class="about__map-link">Ver no Google Maps ➔</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

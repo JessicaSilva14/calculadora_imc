@@ -1,0 +1,164 @@
+// 1. VARIÁVEIS (Mantenha estas no topo)
+$fonte-titulo: 'Playfair Display', serif;
+$fonte-texto: 'Poppins', sans-serif;
+$azul-claro: #add8e6;
+$rosa-pastel: #ffb7c5;
+$lilas: #e0b0ff;
+$verde-claro: #98fb98;
+$branco-transparente: rgba(255, 255, 255, 0.15);
+
+// 2. ESTILO DO CABEÇALHO (Header)
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); // Efeito de vidro no topo
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+    }
+
+    &__logo {
+        font-family: $fonte-titulo;
+        font-size: 1.8rem;
+        color: #fff;
+        font-style: italic;
+    }
+
+    &__list {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+    }
+
+    &__item {
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: $fonte-texto;
+
+        &::before {
+            content: '✦';
+            margin-right: 8px;
+            color: $verde-claro;
+        }
+    }
+}
+
+// 3. ESTILO DO HERO (O que você já tinha, com um pequeno ajuste)
+.hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    font-family: $fonte-texto;
+    padding-top: 80px; // Espaço para não ficar embaixo do header
+
+    background: linear-gradient(
+        45deg, 
+        rgba($azul-claro, 0.4), 
+        rgba($lilas, 0.4), 
+        rgba($rosa-pastel, 0.4), 
+        rgba($verde-claro, 0.4)
+    ), 
+    url('../images/floresta 2.jpg'); 
+
+    background-size: 400% 400%, cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: gradientAnimation 15s ease infinite;
+
+    &__content {
+        z-index: 2;
+        background: $branco-transparente;
+        backdrop-filter: blur(12px);
+        padding: 40px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        max-width: 800px;
+        width: 90%;
+        color: white;
+        animation: fadeInUp 1.5s ease-out;
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+
+            .time-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 15px;
+                border-radius: 15px;
+                min-width: 80px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+
+                span {
+                    font-family: $fonte-titulo;
+                    font-size: 2.5rem;
+                    text-shadow: 0 0 10px rgba($lilas, 0.8);
+                }
+
+                label {
+                    font-size: 0.7rem;
+                    text-transform: uppercase;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    &__title {
+        font-family: $fonte-titulo;
+        font-size: clamp(2rem, 7vw, 4rem);
+        margin-bottom: 1rem;
+    }
+
+    &__button {
+        background-color: #fff;
+        color: #b19cd9;
+        padding: 12px 35px;
+        border-radius: 50px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.05);
+            background-color: $verde-claro;
+            color: #fff;
+        }
+    }
+}
+
+// 4. ANIMAÇÕES (Mantenha fora de tudo)
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}

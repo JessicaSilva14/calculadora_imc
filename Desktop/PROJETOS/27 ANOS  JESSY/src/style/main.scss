@@ -1,0 +1,15 @@
+@use "sass:color";
+
+// Aqui você está dizendo: "Vá lá no arquivo hero e use o que está lá"
+@import "./hero";
+@import "./about";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; // Garante que não apareça barra de rolagem lateral
+}
