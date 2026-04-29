@@ -1,0 +1,112 @@
+:root {
+    --header-color: #a6dbff; /* Sua cor azul original */
+    --bg-color: #a3f0fa9c;    /* Sua cor ciano original */
+}
+
+/* 1. Reset completo para garantir que nada empurre o card */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center; /* Centro horizontal */[cite: 5]
+    align-items: center;     /* Centro vertical */[cite: 5]
+    min-height: 100vh;       /* Usa 100% da altura da tela */[cite: 5]
+    margin: 0;               
+    padding: 0;
+}
+
+header {
+    background-color: #fff;
+    width: 90%;
+    max-width: 500px; 
+    border-radius: 20px;
+    text-align: center;[cite: 2]
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    position: relative;
+    padding-bottom: 20px; /* Garante espaço no pé do card */
+    margin-top: 50px; /* Dá um espaço do topo da tela */
+}
+
+/* Garante a faixa azul superior dentro do card */
+header::before {
+    content: "";
+    display: block;
+    height: 100px;
+    background-color: var(--header-color);
+    border-radius: 20px 20px 0 0;
+}
+
+/* 4. Elementos internos */
+.profile-avatar {
+    border-radius: 50%;[cite: 2]
+    width: 140px;
+    height: 140px;[cite: 2]
+    object-fit: cover;
+    border: 5px solid #fff;
+    margin-top: -70px; /* Faz a foto subir para a faixa azul */
+    position: relative;
+    margin-bottom: 15px;[cite: 2]
+}
+
+.profile-name {
+    font-size: 2em;[cite: 2]
+    color: #333;
+}
+
+.profile-username {
+    font-size: 1.1em;[cite: 2]
+    color: #666;
+    margin-bottom: 25px;[cite: 2]
+}
+
+.numbers {
+    display: flex; /* Mudamos de Grid para Flex para centralizar melhor os itens[cite: 2] */
+    justify-content: space-around;
+    padding: 20px;
+    margin: 0 30px 25px;
+    background: #f8f9fa;
+    border-radius: 15px;
+}
+
+.numbers-item {
+    font-size: 1.5em;[cite: 2]
+    font-weight: bold;[cite: 2]
+    color: #222;
+}
+
+.numbers-item h4 {
+    font-size: 0.5em;[cite: 2]
+    color: #999;
+    text-transform: uppercase;
+}
+
+.profile-link {
+    background-color: var(--header-color);[cite: 2]
+    color: #fff;
+    text-decoration: none;[cite: 2]
+    padding: 15px 0;[cite: 2]
+    width: 80%;
+    border-radius: 10px;
+    display: inline-block;[cite: 2]
+    font-weight: bold;
+    margin-bottom: 35px;
+    transition: filter 0.2s;
+}
+
+.profile-link:hover {
+    filter: brightness(0.95);
+}
+
+.container {
+    display: contents; /* Isso faz a div "sumir" visualmente, mantendo os filhos */
+}
